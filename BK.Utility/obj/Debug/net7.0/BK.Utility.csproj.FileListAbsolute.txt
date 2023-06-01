@@ -1,0 +1,12 @@
+/Users/benbaho/Projects/BangkokWheels/BK.Utility/bin/Debug/net7.0/BK.Utility.deps.json
+/Users/benbaho/Projects/BangkokWheels/BK.Utility/bin/Debug/net7.0/BK.Utility.dll
+/Users/benbaho/Projects/BangkokWheels/BK.Utility/bin/Debug/net7.0/BK.Utility.pdb
+/Users/benbaho/Projects/BangkokWheels/BK.Utility/obj/Debug/net7.0/BK.Utility.csproj.AssemblyReference.cache
+/Users/benbaho/Projects/BangkokWheels/BK.Utility/obj/Debug/net7.0/BK.Utility.GeneratedMSBuildEditorConfig.editorconfig
+/Users/benbaho/Projects/BangkokWheels/BK.Utility/obj/Debug/net7.0/BK.Utility.AssemblyInfoInputs.cache
+/Users/benbaho/Projects/BangkokWheels/BK.Utility/obj/Debug/net7.0/BK.Utility.AssemblyInfo.cs
+/Users/benbaho/Projects/BangkokWheels/BK.Utility/obj/Debug/net7.0/BK.Utility.csproj.CoreCompileInputs.cache
+/Users/benbaho/Projects/BangkokWheels/BK.Utility/obj/Debug/net7.0/BK.Utility.dll
+/Users/benbaho/Projects/BangkokWheels/BK.Utility/obj/Debug/net7.0/refint/BK.Utility.dll
+/Users/benbaho/Projects/BangkokWheels/BK.Utility/obj/Debug/net7.0/BK.Utility.pdb
+/Users/benbaho/Projects/BangkokWheels/BK.Utility/obj/Debug/net7.0/ref/BK.Utility.dll

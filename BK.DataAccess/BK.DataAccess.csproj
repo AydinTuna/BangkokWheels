@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+	<ItemGroup>
+		<None Remove="Data\" />
+		<None Remove="Repository\" />
+		<None Remove="Repository\IRepository\" />
+		<None Remove="Migrations\" />
+	</ItemGroup>
+	<ItemGroup>
+		<Folder Include="Data\" />
+		<Folder Include="Repository\" />
+		<Folder Include="Repository\IRepository\" />
+		<Folder Include="Migrations\" />
+		<Folder Include="Repository\IRepository\" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\BK.Models\BK.Models.csproj" />
+		<ProjectReference Include="..\BK.Utility\BK.Utility.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.5" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.5">
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+			<PrivateAssets>all</PrivateAssets>
+		</PackageReference>
+		<PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="7.0.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.5" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Compile Remove="IRepository\ICarRepository.cs" />
+	  <Compile Remove="IRepository\ICarSpecificationRepository.cs" />
+	  <Compile Remove="IRepository\IAdRepository.cs" />
+	  <Compile Remove="IRepository\IUnitOfWork.cs" />
+	  <Compile Remove="IRepository\IRepository.cs" />
+	</ItemGroup>
+</Project>

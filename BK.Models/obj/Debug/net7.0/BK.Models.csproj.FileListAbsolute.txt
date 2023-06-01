@@ -1,0 +1,12 @@
+/Users/benbaho/Projects/BangkokWheels/BK.Models/bin/Debug/net7.0/BK.Models.deps.json
+/Users/benbaho/Projects/BangkokWheels/BK.Models/bin/Debug/net7.0/BK.Models.dll
+/Users/benbaho/Projects/BangkokWheels/BK.Models/bin/Debug/net7.0/BK.Models.pdb
+/Users/benbaho/Projects/BangkokWheels/BK.Models/obj/Debug/net7.0/BK.Models.csproj.AssemblyReference.cache
+/Users/benbaho/Projects/BangkokWheels/BK.Models/obj/Debug/net7.0/BK.Models.GeneratedMSBuildEditorConfig.editorconfig
+/Users/benbaho/Projects/BangkokWheels/BK.Models/obj/Debug/net7.0/BK.Models.AssemblyInfoInputs.cache
+/Users/benbaho/Projects/BangkokWheels/BK.Models/obj/Debug/net7.0/BK.Models.AssemblyInfo.cs
+/Users/benbaho/Projects/BangkokWheels/BK.Models/obj/Debug/net7.0/BK.Models.csproj.CoreCompileInputs.cache
+/Users/benbaho/Projects/BangkokWheels/BK.Models/obj/Debug/net7.0/BK.Models.dll
+/Users/benbaho/Projects/BangkokWheels/BK.Models/obj/Debug/net7.0/refint/BK.Models.dll
+/Users/benbaho/Projects/BangkokWheels/BK.Models/obj/Debug/net7.0/BK.Models.pdb
+/Users/benbaho/Projects/BangkokWheels/BK.Models/obj/Debug/net7.0/ref/BK.Models.dll
