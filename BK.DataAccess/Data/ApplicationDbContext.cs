@@ -23,9 +23,33 @@ namespace BK.DataAccess.Data
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Ad>().HasData(
-                new Ad { Id = 1, CarId = 1, Status = SD.Status_Approved, CreatedAt = DateTime.Now },
-                new Ad { Id = 2, CarId = 2, Status = SD.Status_Pending, CreatedAt = DateTime.Now },
-                new Ad { Id = 3, CarId = 3, Status = SD.Status_Approved, CreatedAt = DateTime.Now }
+                new Ad
+                {
+                    Id = 1,
+                    CarId = 1,
+                    Status = SD.Status_Approved,
+                    CreatedAt = DateTime.Now,
+                    AdTitle = "Sahibinden temiz Audi, içinde sigara bile içilmedi",
+                    AdDescription = "Canavar gibi makine. 250bg Alman tankı."
+                },
+                new Ad
+                {
+                    Id = 2,
+                    CarId = 2,
+                    Status = SD.Status_Pending,
+                    CreatedAt = DateTime.Now,
+                    AdTitle = "Sahibinden temiz Audi, içinde sigara bile içilmedi",
+                    AdDescription = "Canavar gibi makine. 250bg Alman tankı."
+                },
+                new Ad
+                {
+                    Id = 3,
+                    CarId = 3,
+                    Status = SD.Status_Approved,
+                    CreatedAt = DateTime.Now,
+                    AdTitle = "Sahibinden temiz Audi, içinde sigara bile içilmedi",
+                    AdDescription = "Canavar gibi makine. 250bg Alman tankı."
+                }
                 );
 
 
@@ -44,7 +68,7 @@ namespace BK.DataAccess.Data
                     Mileage = 3321,
                     SalePrice = 30000,
                     CarSpecificationId = 1,
-                    ImageUrl = ""
+                    ImageUrl = "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both"
                 },
                 new Car
                 {
@@ -60,7 +84,7 @@ namespace BK.DataAccess.Data
                     Mileage = 3321,
                     SalePrice = 30000,
                     CarSpecificationId = 2,
-                    ImageUrl = ""
+                    ImageUrl = "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both"
                 },
                 new Car
                 {
@@ -76,7 +100,7 @@ namespace BK.DataAccess.Data
                     Mileage = 3321,
                     SalePrice = 30000,
                     CarSpecificationId = 3,
-                    ImageUrl = ""
+                    ImageUrl = "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both"
                 },
                 new Car
                 {
@@ -92,7 +116,7 @@ namespace BK.DataAccess.Data
                     Mileage = 3321,
                     SalePrice = 30000,
                     CarSpecificationId = 4,
-                    ImageUrl = ""
+                    ImageUrl = "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both"
                 },
                 new Car
                 {
@@ -108,7 +132,7 @@ namespace BK.DataAccess.Data
                     Mileage = 33221,
                     SalePrice = 30000,
                     CarSpecificationId = 5,
-                    ImageUrl = ""
+                    ImageUrl = "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both"
                 }
                 );
 

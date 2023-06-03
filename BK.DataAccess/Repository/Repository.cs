@@ -36,11 +36,10 @@ namespace BK.DataAccess.Repository.IRepository
                     query = query.Include(includeProp);
                 }
             }
-
             return query.FirstOrDefault();
         }
 
-        // Category, CoverType
+        // CarSpecification, CoverType
         public IEnumerable<T> GetAll(string? includeProperties = null)
         {
             IQueryable<T> query = dbSet;
@@ -52,7 +51,6 @@ namespace BK.DataAccess.Repository.IRepository
                     query = query.Include(includeProp);
                 }
             }
-
             return query.ToList();
         }
 

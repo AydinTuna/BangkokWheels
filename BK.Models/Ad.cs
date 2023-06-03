@@ -15,6 +15,10 @@ namespace BK.Models
         public string Status { get; set; }
         [Required]
         public DateTime CreatedAt { get; set; }
+        [Required]
+        public string AdTitle { get; set; }
+        [Required]
+        public string AdDescription { get; set; }
 
         [ForeignKey("CarId")]
         public Car Car { get; set; }

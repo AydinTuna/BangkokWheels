@@ -16,7 +16,24 @@ namespace BK.DataAccess.Repository
 
         public void Update(Car obj)
         {
-            _db.Cars.Update(obj);
+            var objFromDb = _db.Cars.FirstOrDefault(u => u.Id == obj.Id);
+            if (objFromDb != null)
+            {
+                objFromDb.Brand = obj.Brand;
+                objFromDb.Model = obj.Model;
+                objFromDb.ProductionYear = obj.ProductionYear;
+                objFromDb.Type = obj.Type;
+                objFromDb.FuelType = obj.FuelType;
+                objFromDb.Engine = obj.Engine;
+                objFromDb.Transmission = obj.Transmission;
+                objFromDb.Mileage = obj.Mileage;
+                objFromDb.SalePrice = obj.SalePrice;
+                if (obj.ImageUrl != null)
+                {
+                    objFromDb.ImageUrl = obj.ImageUrl;
+                }
+                objFromDb.CarSpecificationId = obj.CarSpecificationId;
+            }
         }
     }
 }

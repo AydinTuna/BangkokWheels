@@ -25,6 +25,14 @@ namespace BK.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<string>("AdDescription")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("AdTitle")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<int>("CarId")
                         .HasColumnType("int");
 
@@ -45,22 +53,28 @@ namespace BK.DataAccess.Migrations
                         new
                         {
                             Id = 1,
+                            AdDescription = "Canavar gibi makine. 250bg Alman tankı.",
+                            AdTitle = "Sahibinden temiz Audi, içinde sigara bile içilmedi",
                             CarId = 1,
-                            CreatedAt = new DateTime(2023, 6, 3, 5, 21, 35, 434, DateTimeKind.Local).AddTicks(5010),
+                            CreatedAt = new DateTime(2023, 6, 3, 15, 39, 13, 10, DateTimeKind.Local).AddTicks(6540),
                             Status = "Approved"
                         },
                         new
                         {
                             Id = 2,
+                            AdDescription = "Canavar gibi makine. 250bg Alman tankı.",
+                            AdTitle = "Sahibinden temiz Audi, içinde sigara bile içilmedi",
                             CarId = 2,
-                            CreatedAt = new DateTime(2023, 6, 3, 5, 21, 35, 434, DateTimeKind.Local).AddTicks(5040),
+                            CreatedAt = new DateTime(2023, 6, 3, 15, 39, 13, 10, DateTimeKind.Local).AddTicks(6580),
                             Status = "Pending"
                         },
                         new
                         {
                             Id = 3,
+                            AdDescription = "Canavar gibi makine. 250bg Alman tankı.",
+                            AdTitle = "Sahibinden temiz Audi, içinde sigara bile içilmedi",
                             CarId = 3,
-                            CreatedAt = new DateTime(2023, 6, 3, 5, 21, 35, 434, DateTimeKind.Local).AddTicks(5050),
+                            CreatedAt = new DateTime(2023, 6, 3, 15, 39, 13, 10, DateTimeKind.Local).AddTicks(6580),
                             Status = "Approved"
                         });
                 });
@@ -128,7 +142,7 @@ namespace BK.DataAccess.Migrations
                             CarSpecificationId = 1,
                             Engine = "v6",
                             FuelType = "Diesel",
-                            ImageUrl = "",
+                            ImageUrl = "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both",
                             Mileage = 3321.0,
                             Model = "A6",
                             OwnerId = 1,
@@ -144,7 +158,7 @@ namespace BK.DataAccess.Migrations
                             CarSpecificationId = 2,
                             Engine = "v6",
                             FuelType = "Diesel",
-                            ImageUrl = "",
+                            ImageUrl = "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both",
                             Mileage = 3321.0,
                             Model = "A6",
                             OwnerId = 5,
@@ -160,7 +174,7 @@ namespace BK.DataAccess.Migrations
                             CarSpecificationId = 3,
                             Engine = "v6",
                             FuelType = "Diesel",
-                            ImageUrl = "",
+                            ImageUrl = "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both",
                             Mileage = 3321.0,
                             Model = "A6",
                             OwnerId = 4,
@@ -176,7 +190,7 @@ namespace BK.DataAccess.Migrations
                             CarSpecificationId = 4,
                             Engine = "v6",
                             FuelType = "Diesel",
-                            ImageUrl = "",
+                            ImageUrl = "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both",
                             Mileage = 3321.0,
                             Model = "A5",
                             OwnerId = 2,
@@ -192,7 +206,7 @@ namespace BK.DataAccess.Migrations
                             CarSpecificationId = 5,
                             Engine = "v6",
                             FuelType = "Diesel",
-                            ImageUrl = "",
+                            ImageUrl = "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both",
                             Mileage = 33221.0,
                             Model = "A7",
                             OwnerId = 1,

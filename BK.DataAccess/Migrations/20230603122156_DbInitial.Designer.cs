@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BK.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230603022135_AddImageUrl")]
-    partial class AddImageUrl
+    [Migration("20230603122156_DbInitial")]
+    partial class DbInitial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -49,21 +49,21 @@ namespace BK.DataAccess.Migrations
                         {
                             Id = 1,
                             CarId = 1,
-                            CreatedAt = new DateTime(2023, 6, 3, 5, 21, 35, 434, DateTimeKind.Local).AddTicks(5010),
+                            CreatedAt = new DateTime(2023, 6, 3, 15, 21, 56, 556, DateTimeKind.Local).AddTicks(7280),
                             Status = "Approved"
                         },
                         new
                         {
                             Id = 2,
                             CarId = 2,
-                            CreatedAt = new DateTime(2023, 6, 3, 5, 21, 35, 434, DateTimeKind.Local).AddTicks(5040),
+                            CreatedAt = new DateTime(2023, 6, 3, 15, 21, 56, 556, DateTimeKind.Local).AddTicks(7320),
                             Status = "Pending"
                         },
                         new
                         {
                             Id = 3,
                             CarId = 3,
-                            CreatedAt = new DateTime(2023, 6, 3, 5, 21, 35, 434, DateTimeKind.Local).AddTicks(5050),
+                            CreatedAt = new DateTime(2023, 6, 3, 15, 21, 56, 556, DateTimeKind.Local).AddTicks(7320),
                             Status = "Approved"
                         });
                 });
@@ -131,7 +131,7 @@ namespace BK.DataAccess.Migrations
                             CarSpecificationId = 1,
                             Engine = "v6",
                             FuelType = "Diesel",
-                            ImageUrl = "",
+                            ImageUrl = "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both",
                             Mileage = 3321.0,
                             Model = "A6",
                             OwnerId = 1,
@@ -147,7 +147,7 @@ namespace BK.DataAccess.Migrations
                             CarSpecificationId = 2,
                             Engine = "v6",
                             FuelType = "Diesel",
-                            ImageUrl = "",
+                            ImageUrl = "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both",
                             Mileage = 3321.0,
                             Model = "A6",
                             OwnerId = 5,
@@ -163,7 +163,7 @@ namespace BK.DataAccess.Migrations
                             CarSpecificationId = 3,
                             Engine = "v6",
                             FuelType = "Diesel",
-                            ImageUrl = "",
+                            ImageUrl = "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both",
                             Mileage = 3321.0,
                             Model = "A6",
                             OwnerId = 4,
@@ -179,7 +179,7 @@ namespace BK.DataAccess.Migrations
                             CarSpecificationId = 4,
                             Engine = "v6",
                             FuelType = "Diesel",
-                            ImageUrl = "",
+                            ImageUrl = "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both",
                             Mileage = 3321.0,
                             Model = "A5",
                             OwnerId = 2,
@@ -195,7 +195,7 @@ namespace BK.DataAccess.Migrations
                             CarSpecificationId = 5,
                             Engine = "v6",
                             FuelType = "Diesel",
-                            ImageUrl = "",
+                            ImageUrl = "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both",
                             Mileage = 33221.0,
                             Model = "A7",
                             OwnerId = 1,

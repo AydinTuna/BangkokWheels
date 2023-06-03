@@ -65,23 +65,42 @@ namespace BangkokWheels.Areas.Customer.Controllers
                 string wwwRootPath = _webHostEnvironment.WebRootPath;
                 if (file != null)
                 {
-
                     string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
-                    string carPath = Path.Combine(wwwRootPath, @"images/cars");
+                    string productPath = Path.Combine(wwwRootPath, @"images/cars");
 
+                    if (!string.IsNullOrEmpty(carVM.Car.ImageUrl))
+                    {
+                        //delete the old image
+                        var oldImagePath =
+                            Path.Combine(wwwRootPath, carVM.Car.ImageUrl.TrimStart('/'));
 
-                    using (var fileStream = new FileStream(Path.Combine(carPath, fileName), FileMode.Create))
+                        if (System.IO.File.Exists(oldImagePath))
+                        {
+                            System.IO.File.Delete(oldImagePath);
+                        }
+                    }
+
+                    using (var fileStream = new FileStream(Path.Combine(productPath, fileName), FileMode.Create))
                     {
                         file.CopyTo(fileStream);
                     }
 
                     carVM.Car.ImageUrl = @"/images/cars/" + fileName;
-
                 }
-                _unitOfWork.Car.Add(carVM.Car);
+
+                if (carVM.Car.Id == 0)
+                {
+                    _unitOfWork.Car.Add(carVM.Car);
+                }
+                else
+                {
+                    _unitOfWork.Car.Update(carVM.Car);
+                }
+
                 _unitOfWork.Save();
-                TempData["success"] = "Product created/updated successfully";
+                TempData["success"] = "Car created successfully";
                 return RedirectToAction("Index");
+
             }
             else
             {
@@ -114,12 +133,21 @@ namespace BangkokWheels.Areas.Customer.Controllers
                 return Json(new { success = false, message = "Error while deleting" });
             }
 
+            var oldImagePath =
+                           Path.Combine(_webHostEnvironment.WebRootPath,
+                           carToBeDeleted.ImageUrl.TrimStart('/'));
+
+            if (System.IO.File.Exists(oldImagePath))
+            {
+                System.IO.File.Delete(oldImagePath);
+            }
 
             _unitOfWork.Car.Remove(carToBeDeleted);
             _unitOfWork.Save();
 
             return Json(new { success = true, message = "Delete Successful" });
         }
+
 
         #endregion
     }

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BK.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class DbInitial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -247,7 +247,7 @@ namespace BK.DataAccess.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Mileage = table.Column<double>(type: "double", nullable: false),
                     SalePrice = table.Column<double>(type: "double", nullable: false),
-                    Images = table.Column<string>(type: "longtext", nullable: false)
+                    ImageUrl = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     CarSpecificationId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -300,14 +300,14 @@ namespace BK.DataAccess.Migrations
 
             migrationBuilder.InsertData(
                 table: "Cars",
-                columns: new[] { "Id", "Brand", "CarSpecificationId", "Engine", "FuelType", "Images", "Mileage", "Model", "OwnerId", "ProductionYear", "SalePrice", "Transmission", "Type" },
+                columns: new[] { "Id", "Brand", "CarSpecificationId", "Engine", "FuelType", "ImageUrl", "Mileage", "Model", "OwnerId", "ProductionYear", "SalePrice", "Transmission", "Type" },
                 values: new object[,]
                 {
-                    { 1, "Audi", 1, "v6", "Diesel", "", 3321.0, "A6", 1, 2000, 30000.0, "Manuel", "Sedan" },
-                    { 2, "Audi", 2, "v6", "Diesel", "", 3321.0, "A6", 5, 2000, 30000.0, "Manuel", "Sedan" },
-                    { 3, "Audi", 3, "v6", "Diesel", "", 3321.0, "A6", 4, 2000, 30000.0, "Manuel", "Sedan" },
-                    { 4, "Audi", 4, "v6", "Diesel", "", 3321.0, "A5", 2, 2000, 30000.0, "Manuel", "Sedan" },
-                    { 5, "Audi", 5, "v6", "Diesel", "", 33221.0, "A7", 1, 2000, 30000.0, "Automatic", "Sedan" }
+                    { 1, "Audi", 1, "v6", "Diesel", "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both", 3321.0, "A6", 1, 2000, 30000.0, "Manuel", "Sedan" },
+                    { 2, "Audi", 2, "v6", "Diesel", "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both", 3321.0, "A6", 5, 2000, 30000.0, "Manuel", "Sedan" },
+                    { 3, "Audi", 3, "v6", "Diesel", "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both", 3321.0, "A6", 4, 2000, 30000.0, "Manuel", "Sedan" },
+                    { 4, "Audi", 4, "v6", "Diesel", "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both", 3321.0, "A5", 2, 2000, 30000.0, "Manuel", "Sedan" },
+                    { 5, "Audi", 5, "v6", "Diesel", "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both", 33221.0, "A7", 1, 2000, 30000.0, "Automatic", "Sedan" }
                 });
 
             migrationBuilder.InsertData(
@@ -315,9 +315,9 @@ namespace BK.DataAccess.Migrations
                 columns: new[] { "Id", "CarId", "CreatedAt", "Status" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2023, 6, 1, 21, 25, 56, 166, DateTimeKind.Local).AddTicks(8550), "Approved" },
-                    { 2, 2, new DateTime(2023, 6, 1, 21, 25, 56, 166, DateTimeKind.Local).AddTicks(8560), "Pending" },
-                    { 3, 3, new DateTime(2023, 6, 1, 21, 25, 56, 166, DateTimeKind.Local).AddTicks(8560), "Approved" }
+                    { 1, 1, new DateTime(2023, 6, 3, 15, 21, 56, 556, DateTimeKind.Local).AddTicks(7280), "Approved" },
+                    { 2, 2, new DateTime(2023, 6, 3, 15, 21, 56, 556, DateTimeKind.Local).AddTicks(7320), "Pending" },
+                    { 3, 3, new DateTime(2023, 6, 3, 15, 21, 56, 556, DateTimeKind.Local).AddTicks(7320), "Approved" }
                 });
 
             migrationBuilder.CreateIndex(

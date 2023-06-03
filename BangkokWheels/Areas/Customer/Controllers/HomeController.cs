@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using BK.Models;
+using BK.DataAccess.Repository.IRepository;
 
 namespace BangkokWheels.Controllers;
 
@@ -8,15 +9,19 @@ namespace BangkokWheels.Controllers;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(ILogger<HomeController> logger, IUnitOfWork unitOfWork)
     {
         _logger = logger;
+        _unitOfWork = unitOfWork;
     }
 
     public IActionResult Index()
     {
-        return View();
+        //IEnumerable<Car> carList = _unitOfWork.Car.GetAll(includeProperties: "CarSpecification");
+        IEnumerable<Ad> adList = _unitOfWork.Ad.GetAll(includeProperties: "Car");
+        return View(adList);
     }
 
     public IActionResult Privacy()

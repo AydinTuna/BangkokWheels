@@ -6,6 +6,7 @@ namespace BK.Models.ViewModels
 {
     public class CarVM
     {
+        public Ad Ad { get; set; }
         public Car Car { get; set; }
         [ValidateNever]
         public IEnumerable<SelectListItem> CarSpecificationList { get; set; }
