@@ -15,12 +15,14 @@ namespace BK.Models
         [Required]
         public string Type { get; set; }
         [Required]
+        [DisplayName("Production Year")]
         public int ProductionYear { get; set; }
         [Required]
         public string Brand { get; set; }
         [Required]
         public string Model { get; set; }
         [Required]
+        [DisplayName("Fuel Type")]
         public string FuelType { get; set; }
         [Required]
         public string Engine { get; set; }
@@ -30,10 +32,11 @@ namespace BK.Models
         public double Mileage { get; set; }
         [Required]
         [Range(1, 9999999)]
+        [DisplayName("Sale Price")]
         public double SalePrice { get; set; }
         [ValidateNever]
-        public string Images { get; set; }
-
+        public string ImageUrl { get; set; }
+        [DisplayName("Car Specification")]
         public int CarSpecificationId { get; set; }
         [ForeignKey("CarSpecificationId")]
         [ValidateNever]

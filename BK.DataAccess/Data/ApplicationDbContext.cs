@@ -44,7 +44,7 @@ namespace BK.DataAccess.Data
                     Mileage = 3321,
                     SalePrice = 30000,
                     CarSpecificationId = 1,
-                    Images = ""
+                    ImageUrl = ""
                 },
                 new Car
                 {
@@ -60,7 +60,7 @@ namespace BK.DataAccess.Data
                     Mileage = 3321,
                     SalePrice = 30000,
                     CarSpecificationId = 2,
-                    Images = ""
+                    ImageUrl = ""
                 },
                 new Car
                 {
@@ -76,7 +76,7 @@ namespace BK.DataAccess.Data
                     Mileage = 3321,
                     SalePrice = 30000,
                     CarSpecificationId = 3,
-                    Images = ""
+                    ImageUrl = ""
                 },
                 new Car
                 {
@@ -92,7 +92,7 @@ namespace BK.DataAccess.Data
                     Mileage = 3321,
                     SalePrice = 30000,
                     CarSpecificationId = 4,
-                    Images = ""
+                    ImageUrl = ""
                 },
                 new Car
                 {
@@ -108,7 +108,7 @@ namespace BK.DataAccess.Data
                     Mileage = 33221,
                     SalePrice = 30000,
                     CarSpecificationId = 5,
-                    Images = ""
+                    ImageUrl = ""
                 }
                 );
 

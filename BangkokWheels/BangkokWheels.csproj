@@ -35,13 +35,19 @@
 	<ItemGroup>
 		<None Remove="Areas\Customer\Views\Home\" />
 		<None Remove="Areas\Customer\Controllers\" />
+		<None Remove="Areas\Customer\Views\Car\" />
 	</ItemGroup>
 	<ItemGroup>
 		<Folder Include="Areas\Customer\Views\Home\" />
 		<Folder Include="Areas\Customer\Controllers\" />
 		<Folder Include="wwwroot\css\" />
+		<Folder Include="Areas\Customer\Views\Car\" />
+		<Folder Include="wwwroot\images\" />
+		<Folder Include="wwwroot\images\cars\" />
 	</ItemGroup>
 	<ItemGroup>
 		<Content Remove="wwwroot\css\" />
+		<Content Remove="wwwroot\images\" />
+		<Content Remove="wwwroot\images\cars\" />
 	</ItemGroup>
 </Project>
