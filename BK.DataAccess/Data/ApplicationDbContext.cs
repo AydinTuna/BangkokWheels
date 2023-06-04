@@ -13,54 +13,24 @@ namespace BK.DataAccess.Data
         {
         }
 
-        public DbSet<Ad> Ads { get; set; }
         public DbSet<Car> Cars { get; set; }
         public DbSet<CarSpecification> CarSpecifications { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<Brand> Brands { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Ad>().HasData(
-                new Ad
-                {
-                    Id = 1,
-                    CarId = 1,
-                    Status = SD.Status_Approved,
-                    CreatedAt = DateTime.Now,
-                    AdTitle = "Sahibinden temiz Audi, içinde sigara bile içilmedi",
-                    AdDescription = "Canavar gibi makine. 250bg Alman tankı."
-                },
-                new Ad
-                {
-                    Id = 2,
-                    CarId = 2,
-                    Status = SD.Status_Pending,
-                    CreatedAt = DateTime.Now,
-                    AdTitle = "Sahibinden temiz Audi, içinde sigara bile içilmedi",
-                    AdDescription = "Canavar gibi makine. 250bg Alman tankı."
-                },
-                new Ad
-                {
-                    Id = 3,
-                    CarId = 3,
-                    Status = SD.Status_Approved,
-                    CreatedAt = DateTime.Now,
-                    AdTitle = "Sahibinden temiz Audi, içinde sigara bile içilmedi",
-                    AdDescription = "Canavar gibi makine. 250bg Alman tankı."
-                }
-                );
 
 
             modelBuilder.Entity<Car>().HasData(
                 new Car
                 {
                     Id = 1,
-                    OwnerId = 1,
                     Type = "Sedan",
                     ProductionYear = 2000,
-                    Brand = "Audi",
+                    BrandId = 1,
                     Model = "A6",
                     FuelType = "Diesel",
                     Engine = "v6",
@@ -68,15 +38,18 @@ namespace BK.DataAccess.Data
                     Mileage = 3321,
                     SalePrice = 30000,
                     CarSpecificationId = 1,
-                    ImageUrl = "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both"
+                    ImageUrl = "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both",
+                    Status = SD.Status_Approved,
+                    CreatedAt = DateTime.Now,
+                    AdTitle = "Harika bir araba",
+                    AdDescription = "Harika bir araba ulan"
                 },
                 new Car
                 {
                     Id = 2,
-                    OwnerId = 5,
                     Type = "Sedan",
                     ProductionYear = 2000,
-                    Brand = "Audi",
+                    BrandId = 1,
                     Model = "A6",
                     FuelType = "Diesel",
                     Engine = "v6",
@@ -84,15 +57,18 @@ namespace BK.DataAccess.Data
                     Mileage = 3321,
                     SalePrice = 30000,
                     CarSpecificationId = 2,
-                    ImageUrl = "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both"
+                    ImageUrl = "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both",
+                    Status = SD.Status_Approved,
+                    CreatedAt = DateTime.Now,
+                    AdTitle = "Harika bir araba",
+                    AdDescription = "Harika bir araba ulan"
                 },
                 new Car
                 {
                     Id = 3,
-                    OwnerId = 4,
                     Type = "Sedan",
                     ProductionYear = 2000,
-                    Brand = "Audi",
+                    BrandId = 1,
                     Model = "A6",
                     FuelType = "Diesel",
                     Engine = "v6",
@@ -100,39 +76,11 @@ namespace BK.DataAccess.Data
                     Mileage = 3321,
                     SalePrice = 30000,
                     CarSpecificationId = 3,
-                    ImageUrl = "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both"
-                },
-                new Car
-                {
-                    Id = 4,
-                    OwnerId = 2,
-                    Type = "Sedan",
-                    ProductionYear = 2000,
-                    Brand = "Audi",
-                    Model = "A5",
-                    FuelType = "Diesel",
-                    Engine = "v6",
-                    Transmission = "Manuel",
-                    Mileage = 3321,
-                    SalePrice = 30000,
-                    CarSpecificationId = 4,
-                    ImageUrl = "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both"
-                },
-                new Car
-                {
-                    Id = 5,
-                    OwnerId = 1,
-                    Type = "Sedan",
-                    ProductionYear = 2000,
-                    Brand = "Audi",
-                    Model = "A7",
-                    FuelType = "Diesel",
-                    Engine = "v6",
-                    Transmission = "Automatic",
-                    Mileage = 33221,
-                    SalePrice = 30000,
-                    CarSpecificationId = 5,
-                    ImageUrl = "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both"
+                    ImageUrl = "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both",
+                    Status = SD.Status_Approved,
+                    CreatedAt = DateTime.Now,
+                    AdTitle = "Harika bir araba",
+                    AdDescription = "Harika bir araba ulan"
                 }
                 );
 
@@ -163,6 +111,39 @@ namespace BK.DataAccess.Data
                     Id = 5,
                     SpecificationName = "Camera"
                 }
+                );
+
+            modelBuilder.Entity<Brand>().HasData(
+                new Brand
+                {
+                    Id = 1,
+                    BrandName = "Audi"
+                },
+                new Brand
+                {
+                    Id = 2,
+                    BrandName = "BMW"
+                }, new Brand
+                {
+                    Id = 3,
+                    BrandName = "Mercedes"
+                },
+                new Brand
+                {
+                    Id = 4,
+                    BrandName = "Ford"
+                },
+                new Brand
+                {
+                    Id = 5,
+                    BrandName = "Mitsubishi"
+                },
+                new Brand
+                {
+                    Id = 6,
+                    BrandName = "Nissan"
+                }
+
                 );
         }
     }

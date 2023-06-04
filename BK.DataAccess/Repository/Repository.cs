@@ -15,8 +15,8 @@ namespace BK.DataAccess.Repository.IRepository
             _db = db;
             this.dbSet = _db.Set<T>();
             //_db.Categories == dbSet;
-            _db.Ads.Include(u => u.Car).Include(u => u.CarId);
             _db.Cars.Include(u => u.CarSpecification).Include(u => u.CarSpecificationId);
+            _db.Cars.Include(u => u.Brand).Include(u => u.BrandId);
         }
 
         public void Add(T entity)

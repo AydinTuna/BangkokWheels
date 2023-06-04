@@ -3,6 +3,7 @@ using System;
 using BK.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,61 +11,16 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BK.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230603211951_DbInitializeUpdate")]
+    partial class DbInitializeUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
-
-            modelBuilder.Entity("BK.Models.Brand", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("BrandName")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Brands");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            BrandName = "Audi"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            BrandName = "BMW"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            BrandName = "Mercedes"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            BrandName = "Ford"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            BrandName = "Mitsubishi"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            BrandName = "Nissan"
-                        });
-                });
 
             modelBuilder.Entity("BK.Models.Car", b =>
                 {
@@ -80,8 +36,9 @@ namespace BK.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("BrandId")
-                        .HasColumnType("int");
+                    b.Property<string>("Brand")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<int>("CarSpecificationId")
                         .HasColumnType("int");
@@ -108,8 +65,8 @@ namespace BK.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("OwnerId")
-                        .HasColumnType("longtext");
+                    b.Property<int>("OwnerId")
+                        .HasColumnType("int");
 
                     b.Property<int>("ProductionYear")
                         .HasColumnType("int");
@@ -131,8 +88,6 @@ namespace BK.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BrandId");
-
                     b.HasIndex("CarSpecificationId");
 
                     b.ToTable("Cars");
@@ -143,14 +98,15 @@ namespace BK.DataAccess.Migrations
                             Id = 1,
                             AdDescription = "Harika bir araba ulan",
                             AdTitle = "Harika bir araba",
-                            BrandId = 1,
+                            Brand = "Audi",
                             CarSpecificationId = 1,
-                            CreatedAt = new DateTime(2023, 6, 4, 5, 43, 29, 851, DateTimeKind.Local).AddTicks(6320),
+                            CreatedAt = new DateTime(2023, 6, 4, 0, 19, 51, 501, DateTimeKind.Local).AddTicks(1180),
                             Engine = "v6",
                             FuelType = "Diesel",
                             ImageUrl = "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both",
                             Mileage = 3321.0,
                             Model = "A6",
+                            OwnerId = 1,
                             ProductionYear = 2000,
                             SalePrice = 30000.0,
                             Status = "Approved",
@@ -162,14 +118,15 @@ namespace BK.DataAccess.Migrations
                             Id = 2,
                             AdDescription = "Harika bir araba ulan",
                             AdTitle = "Harika bir araba",
-                            BrandId = 1,
+                            Brand = "Audi",
                             CarSpecificationId = 2,
-                            CreatedAt = new DateTime(2023, 6, 4, 5, 43, 29, 851, DateTimeKind.Local).AddTicks(6330),
+                            CreatedAt = new DateTime(2023, 6, 4, 0, 19, 51, 501, DateTimeKind.Local).AddTicks(1200),
                             Engine = "v6",
                             FuelType = "Diesel",
                             ImageUrl = "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both",
                             Mileage = 3321.0,
                             Model = "A6",
+                            OwnerId = 5,
                             ProductionYear = 2000,
                             SalePrice = 30000.0,
                             Status = "Approved",
@@ -181,14 +138,15 @@ namespace BK.DataAccess.Migrations
                             Id = 3,
                             AdDescription = "Harika bir araba ulan",
                             AdTitle = "Harika bir araba",
-                            BrandId = 1,
+                            Brand = "Audi",
                             CarSpecificationId = 3,
-                            CreatedAt = new DateTime(2023, 6, 4, 5, 43, 29, 851, DateTimeKind.Local).AddTicks(6340),
+                            CreatedAt = new DateTime(2023, 6, 4, 0, 19, 51, 501, DateTimeKind.Local).AddTicks(1200),
                             Engine = "v6",
                             FuelType = "Diesel",
                             ImageUrl = "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both",
                             Mileage = 3321.0,
                             Model = "A6",
+                            OwnerId = 4,
                             ProductionYear = 2000,
                             SalePrice = 30000.0,
                             Status = "Approved",
@@ -464,19 +422,11 @@ namespace BK.DataAccess.Migrations
 
             modelBuilder.Entity("BK.Models.Car", b =>
                 {
-                    b.HasOne("BK.Models.Brand", "Brand")
-                        .WithMany()
-                        .HasForeignKey("BrandId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("BK.Models.CarSpecification", "CarSpecification")
                         .WithMany()
                         .HasForeignKey("CarSpecificationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Brand");
 
                     b.Navigation("CarSpecification");
                 });

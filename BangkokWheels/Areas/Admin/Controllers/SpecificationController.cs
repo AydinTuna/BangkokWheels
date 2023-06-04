@@ -15,14 +15,14 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BangkokWheels.Areas.Customer.Controllers
 {
-    [Area("Customer")]
-    [Authorize(Roles = SD.Role_Customer)]
-    public class CarController : Controller
+    [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
+    public class SpecificationController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public CarController(IUnitOfWork unitOfWork, IWebHostEnvironment webHostEnvironment)
+        public SpecificationController(IUnitOfWork unitOfWork, IWebHostEnvironment webHostEnvironment)
         {
             _unitOfWork = unitOfWork;
             _webHostEnvironment = webHostEnvironment;

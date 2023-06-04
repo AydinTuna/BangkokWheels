@@ -8,7 +8,7 @@ function loadDataTable() {
     dataTable = $('#tblData').DataTable({
         "ajax": { url: '/customer/car/getall' },
         "columns": [
-            { data: 'brand.brandName', "width": "25%" },
+            { data: 'brand', "width": "25%" },
             { data: 'carSpecification.specificationName', "width": "15%" },
             { data: 'productionYear', "width": "10%" },
             { data: 'salePrice', "width": "15%" },

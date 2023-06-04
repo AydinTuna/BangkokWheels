@@ -33,6 +33,10 @@ namespace BK.DataAccess.Repository
                     objFromDb.ImageUrl = obj.ImageUrl;
                 }
                 objFromDb.CarSpecificationId = obj.CarSpecificationId;
+                objFromDb.Status = obj.Status;
+                objFromDb.CreatedAt = DateTime.Now;
+                objFromDb.AdTitle = obj.AdTitle;
+                objFromDb.AdDescription = obj.AdDescription;
             }
         }
     }

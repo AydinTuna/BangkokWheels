@@ -1,0 +1,68 @@
+﻿@model Car
+
+<h1 class="text-5xl py-8 text-center font-bold tracking-wider bg-gradient-to-r from-sky-500 to-indigo-500 mb-6">CAR DETAILS</h1>
+<section class="max-w-[800px] mx-auto flex flex-col justify-center items-center py-8">
+
+    <div class="relative h-auto max-w-full rounded-xl">
+        <img class="h-auto max-w-full rounded-xl shadow-lg shadow-gray-600" src="@Model.ImageUrl" alt="@Model.Brand">
+        <span class="absolute bottom-4 right-4 inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xl font-light text-green-700 ring-1 ring-inset ring-green-600/20
+              hover:cursor-pointer hover:bg-green-100">
+            @Model.SalePrice.ToString("c")
+        </span>
+    </div>
+    <div class="w-full h-full flex items-center justify-center mt-8">
+        <div class="w-full min-h-[300px] me-4 p-4 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 shadow-lg shadow-gray-600">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">@Model.AdTitle</h2>
+            <p class="text-md font-xs text-gray-900">@Model.AdDescription</p>
+        </div>
+        <div class="w-full min-h-[300px] ms-4 p-4 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 shadow-lg shadow-gray-600">
+            <p class="text-4xl font-bold text-gray-900">Personal Informations</p>
+        </div>
+    </div>
+    <div class="w-full min-h-[300px] mt-8 p-4 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 shadow-lg shadow-gray-600">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">Car Info:</h2>
+        <ul class="max-w-md space-y-1 text-gray-900 list-inside">
+            <li class="flex items-center">
+                <svg class="w-4 h-4 mr-1.5 text-green-700 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                @Model.Brand
+            </li>
+            <li class="flex items-center">
+                <svg class="w-4 h-4 mr-1.5 text-green-700 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                @Model.Model
+            </li>
+            <li class="flex items-center">
+                <svg class="w-4 h-4 mr-1.5 text-green-700 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                @Model.Engine
+            </li>
+            <li class="flex items-center">
+                <svg class="w-4 h-4 mr-1.5 text-green-700 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                @Model.Mileage
+            </li>
+            <li class="flex items-center">
+                <svg class="w-4 h-4 mr-1.5 text-green-700 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                @Model.ProductionYear
+            </li>
+            <li class="flex items-center">
+                <svg class="w-4 h-4 mr-1.5 text-green-700 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                @Model.FuelType
+            </li>
+            <li class="flex items-center">
+                <svg class="w-4 h-4 mr-1.5 text-green-700 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                @Model.Transmission
+            </li>
+            <li class="flex items-center">
+                <svg class="w-4 h-4 mr-1.5 text-green-700 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                @Model.Type
+            </li>
+        </ul>
+    </div>
+    <div class="w-full min-h-[300px] mt-8 p-4 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 shadow-lg shadow-gray-600">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">Car Specifications:</h2>
+        <ul class="max-w-md space-y-1 text-gray-900 list-inside">
+            <li class="flex items-center">
+                <svg class="w-4 h-4 mr-1.5 text-green-700 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                @Model.CarSpecification.SpecificationName
+            </li>
+        </ul>
+    </div>
+</section>

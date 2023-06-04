@@ -2,10 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using BK.Models;
 using BK.DataAccess.Repository.IRepository;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BangkokWheels.Controllers;
 
 [Area("Customer")]
+[AllowAnonymous]
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
@@ -19,9 +21,16 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        //IEnumerable<Car> carList = _unitOfWork.Car.GetAll(includeProperties: "CarSpecification");
-        IEnumerable<Ad> adList = _unitOfWork.Ad.GetAll(includeProperties: "Car");
-        return View(adList);
+        IEnumerable<Car> carList = _unitOfWork.Car.GetAll(includeProperties: "CarSpecification");
+
+        return View(carList);
+    }
+
+    public IActionResult Details(int carId)
+    {
+        Car car = _unitOfWork.Car.Get(u => u.Id == carId, includeProperties: "CarSpecification");
+
+        return View(car);
     }
 
     public IActionResult Privacy()

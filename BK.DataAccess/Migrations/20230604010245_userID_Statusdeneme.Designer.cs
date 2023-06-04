@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BK.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230603123913_AdUpdated")]
-    partial class AdUpdated
+    [Migration("20230604010245_userID_Statusdeneme")]
+    partial class userID_Statusdeneme
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -22,7 +22,7 @@ namespace BK.DataAccess.Migrations
                 .HasAnnotation("ProductVersion", "7.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("BK.Models.Ad", b =>
+            modelBuilder.Entity("BK.Models.Car", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -36,64 +36,15 @@ namespace BK.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("CarId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CarId");
-
-                    b.ToTable("Ads");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            AdDescription = "Canavar gibi makine. 250bg Alman tankı.",
-                            AdTitle = "Sahibinden temiz Audi, içinde sigara bile içilmedi",
-                            CarId = 1,
-                            CreatedAt = new DateTime(2023, 6, 3, 15, 39, 13, 10, DateTimeKind.Local).AddTicks(6540),
-                            Status = "Approved"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            AdDescription = "Canavar gibi makine. 250bg Alman tankı.",
-                            AdTitle = "Sahibinden temiz Audi, içinde sigara bile içilmedi",
-                            CarId = 2,
-                            CreatedAt = new DateTime(2023, 6, 3, 15, 39, 13, 10, DateTimeKind.Local).AddTicks(6580),
-                            Status = "Pending"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            AdDescription = "Canavar gibi makine. 250bg Alman tankı.",
-                            AdTitle = "Sahibinden temiz Audi, içinde sigara bile içilmedi",
-                            CarId = 3,
-                            CreatedAt = new DateTime(2023, 6, 3, 15, 39, 13, 10, DateTimeKind.Local).AddTicks(6580),
-                            Status = "Approved"
-                        });
-                });
-
-            modelBuilder.Entity("BK.Models.Car", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
                     b.Property<string>("Brand")
                         .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<int>("CarSpecificationId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Engine")
                         .IsRequired()
@@ -114,14 +65,18 @@ namespace BK.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("OwnerId")
-                        .HasColumnType("int");
+                    b.Property<string>("OwnerId")
+                        .HasColumnType("longtext");
 
                     b.Property<int>("ProductionYear")
                         .HasColumnType("int");
 
                     b.Property<double>("SalePrice")
                         .HasColumnType("double");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Transmission")
                         .IsRequired()
@@ -141,81 +96,58 @@ namespace BK.DataAccess.Migrations
                         new
                         {
                             Id = 1,
+                            AdDescription = "Harika bir araba ulan",
+                            AdTitle = "Harika bir araba",
                             Brand = "Audi",
                             CarSpecificationId = 1,
+                            CreatedAt = new DateTime(2023, 6, 4, 4, 2, 45, 57, DateTimeKind.Local),
                             Engine = "v6",
                             FuelType = "Diesel",
                             ImageUrl = "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both",
                             Mileage = 3321.0,
                             Model = "A6",
-                            OwnerId = 1,
                             ProductionYear = 2000,
                             SalePrice = 30000.0,
+                            Status = "Approved",
                             Transmission = "Manuel",
                             Type = "Sedan"
                         },
                         new
                         {
                             Id = 2,
+                            AdDescription = "Harika bir araba ulan",
+                            AdTitle = "Harika bir araba",
                             Brand = "Audi",
                             CarSpecificationId = 2,
+                            CreatedAt = new DateTime(2023, 6, 4, 4, 2, 45, 57, DateTimeKind.Local).AddTicks(30),
                             Engine = "v6",
                             FuelType = "Diesel",
                             ImageUrl = "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both",
                             Mileage = 3321.0,
                             Model = "A6",
-                            OwnerId = 5,
                             ProductionYear = 2000,
                             SalePrice = 30000.0,
+                            Status = "Approved",
                             Transmission = "Manuel",
                             Type = "Sedan"
                         },
                         new
                         {
                             Id = 3,
+                            AdDescription = "Harika bir araba ulan",
+                            AdTitle = "Harika bir araba",
                             Brand = "Audi",
                             CarSpecificationId = 3,
+                            CreatedAt = new DateTime(2023, 6, 4, 4, 2, 45, 57, DateTimeKind.Local).AddTicks(40),
                             Engine = "v6",
                             FuelType = "Diesel",
                             ImageUrl = "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both",
                             Mileage = 3321.0,
                             Model = "A6",
-                            OwnerId = 4,
                             ProductionYear = 2000,
                             SalePrice = 30000.0,
+                            Status = "Approved",
                             Transmission = "Manuel",
-                            Type = "Sedan"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Brand = "Audi",
-                            CarSpecificationId = 4,
-                            Engine = "v6",
-                            FuelType = "Diesel",
-                            ImageUrl = "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both",
-                            Mileage = 3321.0,
-                            Model = "A5",
-                            OwnerId = 2,
-                            ProductionYear = 2000,
-                            SalePrice = 30000.0,
-                            Transmission = "Manuel",
-                            Type = "Sedan"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Brand = "Audi",
-                            CarSpecificationId = 5,
-                            Engine = "v6",
-                            FuelType = "Diesel",
-                            ImageUrl = "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both",
-                            Mileage = 33221.0,
-                            Model = "A7",
-                            OwnerId = 1,
-                            ProductionYear = 2000,
-                            SalePrice = 30000.0,
-                            Transmission = "Automatic",
                             Type = "Sedan"
                         });
                 });
@@ -483,17 +415,6 @@ namespace BK.DataAccess.Migrations
                         .HasColumnType("longtext");
 
                     b.HasDiscriminator().HasValue("ApplicationUser");
-                });
-
-            modelBuilder.Entity("BK.Models.Ad", b =>
-                {
-                    b.HasOne("BK.Models.Car", "Car")
-                        .WithMany()
-                        .HasForeignKey("CarId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Car");
                 });
 
             modelBuilder.Entity("BK.Models.Car", b =>

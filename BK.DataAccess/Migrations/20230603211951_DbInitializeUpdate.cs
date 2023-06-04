@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BK.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class DbInitial : Migration
+    public partial class DbInitializeUpdate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -249,7 +249,14 @@ namespace BK.DataAccess.Migrations
                     SalePrice = table.Column<double>(type: "double", nullable: false),
                     ImageUrl = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    CarSpecificationId = table.Column<int>(type: "int", nullable: false)
+                    CarSpecificationId = table.Column<int>(type: "int", nullable: false),
+                    Status = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    CreatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    AdTitle = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    AdDescription = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
@@ -258,29 +265,6 @@ namespace BK.DataAccess.Migrations
                         name: "FK_Cars_CarSpecifications_CarSpecificationId",
                         column: x => x.CarSpecificationId,
                         principalTable: "CarSpecifications",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "Ads",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    CarId = table.Column<int>(type: "int", nullable: false),
-                    Status = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    CreatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Ads", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Ads_Cars_CarId",
-                        column: x => x.CarId,
-                        principalTable: "Cars",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
@@ -300,30 +284,13 @@ namespace BK.DataAccess.Migrations
 
             migrationBuilder.InsertData(
                 table: "Cars",
-                columns: new[] { "Id", "Brand", "CarSpecificationId", "Engine", "FuelType", "ImageUrl", "Mileage", "Model", "OwnerId", "ProductionYear", "SalePrice", "Transmission", "Type" },
+                columns: new[] { "Id", "AdDescription", "AdTitle", "Brand", "CarSpecificationId", "CreatedAt", "Engine", "FuelType", "ImageUrl", "Mileage", "Model", "OwnerId", "ProductionYear", "SalePrice", "Status", "Transmission", "Type" },
                 values: new object[,]
                 {
-                    { 1, "Audi", 1, "v6", "Diesel", "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both", 3321.0, "A6", 1, 2000, 30000.0, "Manuel", "Sedan" },
-                    { 2, "Audi", 2, "v6", "Diesel", "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both", 3321.0, "A6", 5, 2000, 30000.0, "Manuel", "Sedan" },
-                    { 3, "Audi", 3, "v6", "Diesel", "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both", 3321.0, "A6", 4, 2000, 30000.0, "Manuel", "Sedan" },
-                    { 4, "Audi", 4, "v6", "Diesel", "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both", 3321.0, "A5", 2, 2000, 30000.0, "Manuel", "Sedan" },
-                    { 5, "Audi", 5, "v6", "Diesel", "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both", 33221.0, "A7", 1, 2000, 30000.0, "Automatic", "Sedan" }
+                    { 1, "Harika bir araba ulan", "Harika bir araba", "Audi", 1, new DateTime(2023, 6, 4, 0, 19, 51, 501, DateTimeKind.Local).AddTicks(1180), "v6", "Diesel", "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both", 3321.0, "A6", 1, 2000, 30000.0, "Approved", "Manuel", "Sedan" },
+                    { 2, "Harika bir araba ulan", "Harika bir araba", "Audi", 2, new DateTime(2023, 6, 4, 0, 19, 51, 501, DateTimeKind.Local).AddTicks(1200), "v6", "Diesel", "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both", 3321.0, "A6", 5, 2000, 30000.0, "Approved", "Manuel", "Sedan" },
+                    { 3, "Harika bir araba ulan", "Harika bir araba", "Audi", 3, new DateTime(2023, 6, 4, 0, 19, 51, 501, DateTimeKind.Local).AddTicks(1200), "v6", "Diesel", "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both", 3321.0, "A6", 4, 2000, 30000.0, "Approved", "Manuel", "Sedan" }
                 });
-
-            migrationBuilder.InsertData(
-                table: "Ads",
-                columns: new[] { "Id", "CarId", "CreatedAt", "Status" },
-                values: new object[,]
-                {
-                    { 1, 1, new DateTime(2023, 6, 3, 15, 21, 56, 556, DateTimeKind.Local).AddTicks(7280), "Approved" },
-                    { 2, 2, new DateTime(2023, 6, 3, 15, 21, 56, 556, DateTimeKind.Local).AddTicks(7320), "Pending" },
-                    { 3, 3, new DateTime(2023, 6, 3, 15, 21, 56, 556, DateTimeKind.Local).AddTicks(7320), "Approved" }
-                });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Ads_CarId",
-                table: "Ads",
-                column: "CarId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -371,9 +338,6 @@ namespace BK.DataAccess.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Ads");
-
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 

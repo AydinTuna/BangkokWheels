@@ -10,15 +10,15 @@ namespace BK.DataAccess.Repository
 
         private ApplicationDbContext _db;
         public ICarRepository Car { get; private set; }
-        public IAdRepository Ad { get; private set; }
         public ICarSpecificationRepository CarSpecification { get; private set; }
+        public IBrandRepository Brand { get; private set; }
 
         public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
             Car = new CarRepository(_db);
-            Ad = new AdRepository(_db);
             CarSpecification = new CarSpecificationRepository(_db);
+            Brand = new BrandRepository(_db);
         }
 
         public void Save()

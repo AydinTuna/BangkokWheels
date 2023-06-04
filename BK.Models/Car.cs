@@ -11,14 +11,10 @@ namespace BK.Models
         [Key]
         public int Id { get; set; }
         [Required]
-        public int OwnerId { get; set; }
-        [Required]
         public string Type { get; set; }
         [Required]
         [DisplayName("Production Year")]
         public int ProductionYear { get; set; }
-        [Required]
-        public string Brand { get; set; }
         [Required]
         public string Model { get; set; }
         [Required]
@@ -41,6 +37,22 @@ namespace BK.Models
         [ForeignKey("CarSpecificationId")]
         [ValidateNever]
         public CarSpecification CarSpecification { get; set; }
+        public int BrandId { get; set; }
+        [ForeignKey("BrandId")]
+        [ValidateNever]
+        public Brand Brand { get; set; }
+        [Required]
+        public string Status { get; set; }
+        [Required]
+        public DateTime CreatedAt { get; set; }
+        [Required]
+        [DisplayName("Ad Title")]
+        public string AdTitle { get; set; }
+        [Required]
+        [DisplayName("Ad Description")]
+        public string AdDescription { get; set; }
+
+        public string? OwnerId { get; set; }
     }
 }
 

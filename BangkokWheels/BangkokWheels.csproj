@@ -36,6 +36,8 @@
 		<None Remove="Areas\Customer\Views\Home\" />
 		<None Remove="Areas\Customer\Controllers\" />
 		<None Remove="Areas\Customer\Views\Car\" />
+		<None Remove="Areas\Admin\Controllers\" />
+		<None Remove="Areas\Admin\Views\Specification\" />
 	</ItemGroup>
 	<ItemGroup>
 		<Folder Include="Areas\Customer\Views\Home\" />
@@ -44,6 +46,8 @@
 		<Folder Include="Areas\Customer\Views\Car\" />
 		<Folder Include="wwwroot\images\" />
 		<Folder Include="wwwroot\images\cars\" />
+		<Folder Include="Areas\Admin\Controllers\" />
+		<Folder Include="Areas\Admin\Views\Specification\" />
 	</ItemGroup>
 	<ItemGroup>
 		<Content Remove="wwwroot\css\" />

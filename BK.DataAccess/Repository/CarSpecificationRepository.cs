@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq.Expressions;
 using BK.DataAccess.Data;
 using BK.DataAccess.IRepository;
 using BK.DataAccess.Repository.IRepository;
@@ -18,6 +19,7 @@ namespace BK.DataAccess.Repository
         {
             _db.CarSpecifications.Update(obj);
         }
+
     }
 }
 

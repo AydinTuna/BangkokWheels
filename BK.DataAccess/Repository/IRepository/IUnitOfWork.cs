@@ -7,7 +7,7 @@ namespace BK.DataAccess.Repository.IRepository
     {
         public ICarSpecificationRepository CarSpecification { get; }
         public ICarRepository Car { get; }
-        public IAdRepository Ad { get; }
+        public IBrandRepository Brand { get; }
 
         void Save();
     }
