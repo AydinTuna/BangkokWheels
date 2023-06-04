@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BK.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class DbInitializeUpdate : Migration
+    public partial class DbInit : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -40,19 +40,7 @@ namespace BK.DataAccess.Migrations
                 name: "AspNetUsers",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "varchar(255)", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Discriminator = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Name = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    StreetAddress = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    City = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    State = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    PostalCode = table.Column<string>(type: "longtext", nullable: true)
+                    OwnerId = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     UserName = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -79,7 +67,22 @@ namespace BK.DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                    table.PrimaryKey("PK_AspNetUsers", x => x.OwnerId);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Brands",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    BrandName = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Brands", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -143,7 +146,7 @@ namespace BK.DataAccess.Migrations
                         name: "FK_AspNetUserClaims_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
+                        principalColumn: "OwnerId",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
@@ -168,7 +171,7 @@ namespace BK.DataAccess.Migrations
                         name: "FK_AspNetUserLogins_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
+                        principalColumn: "OwnerId",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
@@ -195,7 +198,7 @@ namespace BK.DataAccess.Migrations
                         name: "FK_AspNetUserRoles_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
+                        principalColumn: "OwnerId",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
@@ -220,7 +223,36 @@ namespace BK.DataAccess.Migrations
                         name: "FK_AspNetUserTokens_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
+                        principalColumn: "OwnerId",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Owner",
+                columns: table => new
+                {
+                    OwnerId = table.Column<string>(type: "varchar(255)", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Name = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    StreetAddress = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    City = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    State = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    PostalCode = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Owner", x => x.OwnerId);
+                    table.ForeignKey(
+                        name: "FK_Owner_AspNetUsers_OwnerId",
+                        column: x => x.OwnerId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "OwnerId",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
@@ -231,12 +263,9 @@ namespace BK.DataAccess.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    OwnerId = table.Column<int>(type: "int", nullable: false),
                     Type = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     ProductionYear = table.Column<int>(type: "int", nullable: false),
-                    Brand = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
                     Model = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     FuelType = table.Column<string>(type: "longtext", nullable: false)
@@ -250,25 +279,53 @@ namespace BK.DataAccess.Migrations
                     ImageUrl = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     CarSpecificationId = table.Column<int>(type: "int", nullable: false),
+                    BrandId = table.Column<int>(type: "int", nullable: false),
                     Status = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     CreatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     AdTitle = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     AdDescription = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    OwnerId = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Cars", x => x.Id);
                     table.ForeignKey(
+                        name: "FK_Cars_Brands_BrandId",
+                        column: x => x.BrandId,
+                        principalTable: "Brands",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
                         name: "FK_Cars_CarSpecifications_CarSpecificationId",
                         column: x => x.CarSpecificationId,
                         principalTable: "CarSpecifications",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Cars_Owner_OwnerId",
+                        column: x => x.OwnerId,
+                        principalTable: "Owner",
+                        principalColumn: "OwnerId",
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.InsertData(
+                table: "Brands",
+                columns: new[] { "Id", "BrandName" },
+                values: new object[,]
+                {
+                    { 1, "Audi" },
+                    { 2, "BMW" },
+                    { 3, "Mercedes" },
+                    { 4, "Ford" },
+                    { 5, "Mitsubishi" },
+                    { 6, "Nissan" }
+                });
 
             migrationBuilder.InsertData(
                 table: "CarSpecifications",
@@ -280,16 +337,6 @@ namespace BK.DataAccess.Migrations
                     { 3, "Autonom drive" },
                     { 4, "Navigation" },
                     { 5, "Camera" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Cars",
-                columns: new[] { "Id", "AdDescription", "AdTitle", "Brand", "CarSpecificationId", "CreatedAt", "Engine", "FuelType", "ImageUrl", "Mileage", "Model", "OwnerId", "ProductionYear", "SalePrice", "Status", "Transmission", "Type" },
-                values: new object[,]
-                {
-                    { 1, "Harika bir araba ulan", "Harika bir araba", "Audi", 1, new DateTime(2023, 6, 4, 0, 19, 51, 501, DateTimeKind.Local).AddTicks(1180), "v6", "Diesel", "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both", 3321.0, "A6", 1, 2000, 30000.0, "Approved", "Manuel", "Sedan" },
-                    { 2, "Harika bir araba ulan", "Harika bir araba", "Audi", 2, new DateTime(2023, 6, 4, 0, 19, 51, 501, DateTimeKind.Local).AddTicks(1200), "v6", "Diesel", "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both", 3321.0, "A6", 5, 2000, 30000.0, "Approved", "Manuel", "Sedan" },
-                    { 3, "Harika bir araba ulan", "Harika bir araba", "Audi", 3, new DateTime(2023, 6, 4, 0, 19, 51, 501, DateTimeKind.Local).AddTicks(1200), "v6", "Diesel", "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both", 3321.0, "A6", 4, 2000, 30000.0, "Approved", "Manuel", "Sedan" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -330,9 +377,19 @@ namespace BK.DataAccess.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Cars_BrandId",
+                table: "Cars",
+                column: "BrandId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Cars_CarSpecificationId",
                 table: "Cars",
                 column: "CarSpecificationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Cars_OwnerId",
+                table: "Cars",
+                column: "OwnerId");
         }
 
         /// <inheritdoc />
@@ -360,10 +417,16 @@ namespace BK.DataAccess.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "Brands");
 
             migrationBuilder.DropTable(
                 name: "CarSpecifications");
+
+            migrationBuilder.DropTable(
+                name: "Owner");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUsers");
         }
     }
 }

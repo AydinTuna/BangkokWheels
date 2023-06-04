@@ -21,68 +21,14 @@ namespace BK.DataAccess.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<ApplicationUser>().ToTable("Owner");
+            modelBuilder.Entity<ApplicationUser>().Property(u => u.Id).HasColumnName("OwnerId");
 
-
-
-            modelBuilder.Entity<Car>().HasData(
-                new Car
-                {
-                    Id = 1,
-                    Type = "Sedan",
-                    ProductionYear = 2000,
-                    BrandId = 1,
-                    Model = "A6",
-                    FuelType = "Diesel",
-                    Engine = "v6",
-                    Transmission = "Manuel",
-                    Mileage = 3321,
-                    SalePrice = 30000,
-                    CarSpecificationId = 1,
-                    ImageUrl = "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both",
-                    Status = SD.Status_Approved,
-                    CreatedAt = DateTime.Now,
-                    AdTitle = "Harika bir araba",
-                    AdDescription = "Harika bir araba ulan"
-                },
-                new Car
-                {
-                    Id = 2,
-                    Type = "Sedan",
-                    ProductionYear = 2000,
-                    BrandId = 1,
-                    Model = "A6",
-                    FuelType = "Diesel",
-                    Engine = "v6",
-                    Transmission = "Manuel",
-                    Mileage = 3321,
-                    SalePrice = 30000,
-                    CarSpecificationId = 2,
-                    ImageUrl = "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both",
-                    Status = SD.Status_Approved,
-                    CreatedAt = DateTime.Now,
-                    AdTitle = "Harika bir araba",
-                    AdDescription = "Harika bir araba ulan"
-                },
-                new Car
-                {
-                    Id = 3,
-                    Type = "Sedan",
-                    ProductionYear = 2000,
-                    BrandId = 1,
-                    Model = "A6",
-                    FuelType = "Diesel",
-                    Engine = "v6",
-                    Transmission = "Manuel",
-                    Mileage = 3321,
-                    SalePrice = 30000,
-                    CarSpecificationId = 3,
-                    ImageUrl = "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both",
-                    Status = SD.Status_Approved,
-                    CreatedAt = DateTime.Now,
-                    AdTitle = "Harika bir araba",
-                    AdDescription = "Harika bir araba ulan"
-                }
-                );
+            modelBuilder.Entity<Car>()
+                .HasOne(c => c.Owner)
+                .WithMany(u => u.Cars)
+                .HasForeignKey(c => c.OwnerId)
+                .IsRequired();
 
 
             modelBuilder.Entity<CarSpecification>().HasData(
@@ -123,7 +69,8 @@ namespace BK.DataAccess.Data
                 {
                     Id = 2,
                     BrandName = "BMW"
-                }, new Brand
+                },
+                new Brand
                 {
                     Id = 3,
                     BrandName = "Mercedes"

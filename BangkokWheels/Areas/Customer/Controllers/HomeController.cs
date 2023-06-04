@@ -21,14 +21,14 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        IEnumerable<Car> carList = _unitOfWork.Car.GetAll(includeProperties: "CarSpecification");
+        IEnumerable<Car> carList = _unitOfWork.Car.GetAll(includeProperties: "CarSpecification,Brand");
 
         return View(carList);
     }
 
     public IActionResult Details(int carId)
     {
-        Car car = _unitOfWork.Car.Get(u => u.Id == carId, includeProperties: "CarSpecification");
+        Car car = _unitOfWork.Car.Get(u => u.Id == carId, includeProperties: "CarSpecification,Brand");
 
         return View(car);
     }

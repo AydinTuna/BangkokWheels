@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BK.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230604010245_userID_Statusdeneme")]
-    partial class userID_Statusdeneme
+    [Migration("20230604171508_DbInit")]
+    partial class DbInit
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,6 +21,53 @@ namespace BK.DataAccess.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
+
+            modelBuilder.Entity("BK.Models.Brand", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("BrandName")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Brands");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            BrandName = "Audi"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            BrandName = "BMW"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            BrandName = "Mercedes"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            BrandName = "Ford"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            BrandName = "Mitsubishi"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            BrandName = "Nissan"
+                        });
+                });
 
             modelBuilder.Entity("BK.Models.Car", b =>
                 {
@@ -36,9 +83,8 @@ namespace BK.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Brand")
-                        .IsRequired()
-                        .HasColumnType("longtext");
+                    b.Property<int>("BrandId")
+                        .HasColumnType("int");
 
                     b.Property<int>("CarSpecificationId")
                         .HasColumnType("int");
@@ -66,7 +112,8 @@ namespace BK.DataAccess.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("OwnerId")
-                        .HasColumnType("longtext");
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
 
                     b.Property<int>("ProductionYear")
                         .HasColumnType("int");
@@ -88,68 +135,13 @@ namespace BK.DataAccess.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("BrandId");
+
                     b.HasIndex("CarSpecificationId");
 
-                    b.ToTable("Cars");
+                    b.HasIndex("OwnerId");
 
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            AdDescription = "Harika bir araba ulan",
-                            AdTitle = "Harika bir araba",
-                            Brand = "Audi",
-                            CarSpecificationId = 1,
-                            CreatedAt = new DateTime(2023, 6, 4, 4, 2, 45, 57, DateTimeKind.Local),
-                            Engine = "v6",
-                            FuelType = "Diesel",
-                            ImageUrl = "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both",
-                            Mileage = 3321.0,
-                            Model = "A6",
-                            ProductionYear = 2000,
-                            SalePrice = 30000.0,
-                            Status = "Approved",
-                            Transmission = "Manuel",
-                            Type = "Sedan"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            AdDescription = "Harika bir araba ulan",
-                            AdTitle = "Harika bir araba",
-                            Brand = "Audi",
-                            CarSpecificationId = 2,
-                            CreatedAt = new DateTime(2023, 6, 4, 4, 2, 45, 57, DateTimeKind.Local).AddTicks(30),
-                            Engine = "v6",
-                            FuelType = "Diesel",
-                            ImageUrl = "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both",
-                            Mileage = 3321.0,
-                            Model = "A6",
-                            ProductionYear = 2000,
-                            SalePrice = 30000.0,
-                            Status = "Approved",
-                            Transmission = "Manuel",
-                            Type = "Sedan"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            AdDescription = "Harika bir araba ulan",
-                            AdTitle = "Harika bir araba",
-                            Brand = "Audi",
-                            CarSpecificationId = 3,
-                            CreatedAt = new DateTime(2023, 6, 4, 4, 2, 45, 57, DateTimeKind.Local).AddTicks(40),
-                            Engine = "v6",
-                            FuelType = "Diesel",
-                            ImageUrl = "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both",
-                            Mileage = 3321.0,
-                            Model = "A6",
-                            ProductionYear = 2000,
-                            SalePrice = 30000.0,
-                            Status = "Approved",
-                            Transmission = "Manuel",
-                            Type = "Sedan"
-                        });
+                    b.ToTable("Cars");
                 });
 
             modelBuilder.Entity("BK.Models.CarSpecification", b =>
@@ -246,17 +238,14 @@ namespace BK.DataAccess.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("OwnerId");
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Email")
@@ -310,9 +299,7 @@ namespace BK.DataAccess.Migrations
 
                     b.ToTable("AspNetUsers", (string)null);
 
-                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
-
-                    b.UseTphMappingStrategy();
+                    b.UseTptMappingStrategy();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -414,18 +401,34 @@ namespace BK.DataAccess.Migrations
                     b.Property<string>("StreetAddress")
                         .HasColumnType("longtext");
 
-                    b.HasDiscriminator().HasValue("ApplicationUser");
+                    b.ToTable("Owner", (string)null);
                 });
 
             modelBuilder.Entity("BK.Models.Car", b =>
                 {
+                    b.HasOne("BK.Models.Brand", "Brand")
+                        .WithMany()
+                        .HasForeignKey("BrandId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("BK.Models.CarSpecification", "CarSpecification")
                         .WithMany()
                         .HasForeignKey("CarSpecificationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("BK.Models.ApplicationUser", "Owner")
+                        .WithMany("Cars")
+                        .HasForeignKey("OwnerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Brand");
+
                     b.Navigation("CarSpecification");
+
+                    b.Navigation("Owner");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -477,6 +480,20 @@ namespace BK.DataAccess.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("BK.Models.ApplicationUser", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                        .WithOne()
+                        .HasForeignKey("BK.Models.ApplicationUser", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("BK.Models.ApplicationUser", b =>
+                {
+                    b.Navigation("Cars");
                 });
 #pragma warning restore 612, 618
         }

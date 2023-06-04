@@ -8,12 +8,13 @@ using BK.Models.ViewModels;
 using BK.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace BangkokWheels.Areas.Customer.Controllers
+namespace BangkokWheels.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Authorize(Roles = SD.Role_Admin)]
@@ -115,6 +116,11 @@ namespace BangkokWheels.Areas.Customer.Controllers
                 carVM.CarSpecificationList = _unitOfWork.CarSpecification.GetAll().Select(u => new SelectListItem
                 {
                     Text = u.SpecificationName,
+                    Value = u.Id.ToString()
+                });
+                carVM.BrandList = _unitOfWork.Brand.GetAll().Select(u => new SelectListItem
+                {
+                    Text = u.BrandName,
                     Value = u.Id.ToString()
                 });
                 return View(carVM);

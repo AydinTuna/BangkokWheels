@@ -109,7 +109,8 @@ namespace BK.DataAccess.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("OwnerId")
-                        .HasColumnType("longtext");
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
 
                     b.Property<int>("ProductionYear")
                         .HasColumnType("int");
@@ -135,66 +136,9 @@ namespace BK.DataAccess.Migrations
 
                     b.HasIndex("CarSpecificationId");
 
-                    b.ToTable("Cars");
+                    b.HasIndex("OwnerId");
 
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            AdDescription = "Harika bir araba ulan",
-                            AdTitle = "Harika bir araba",
-                            BrandId = 1,
-                            CarSpecificationId = 1,
-                            CreatedAt = new DateTime(2023, 6, 4, 5, 43, 29, 851, DateTimeKind.Local).AddTicks(6320),
-                            Engine = "v6",
-                            FuelType = "Diesel",
-                            ImageUrl = "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both",
-                            Mileage = 3321.0,
-                            Model = "A6",
-                            ProductionYear = 2000,
-                            SalePrice = 30000.0,
-                            Status = "Approved",
-                            Transmission = "Manuel",
-                            Type = "Sedan"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            AdDescription = "Harika bir araba ulan",
-                            AdTitle = "Harika bir araba",
-                            BrandId = 1,
-                            CarSpecificationId = 2,
-                            CreatedAt = new DateTime(2023, 6, 4, 5, 43, 29, 851, DateTimeKind.Local).AddTicks(6330),
-                            Engine = "v6",
-                            FuelType = "Diesel",
-                            ImageUrl = "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both",
-                            Mileage = 3321.0,
-                            Model = "A6",
-                            ProductionYear = 2000,
-                            SalePrice = 30000.0,
-                            Status = "Approved",
-                            Transmission = "Manuel",
-                            Type = "Sedan"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            AdDescription = "Harika bir araba ulan",
-                            AdTitle = "Harika bir araba",
-                            BrandId = 1,
-                            CarSpecificationId = 3,
-                            CreatedAt = new DateTime(2023, 6, 4, 5, 43, 29, 851, DateTimeKind.Local).AddTicks(6340),
-                            Engine = "v6",
-                            FuelType = "Diesel",
-                            ImageUrl = "https://cdn1.ntv.com.tr/gorsel/-UbLpLawtEG71qP298GB3g.jpg?width=952&height=540&mode=both&scale=both",
-                            Mileage = 3321.0,
-                            Model = "A6",
-                            ProductionYear = 2000,
-                            SalePrice = 30000.0,
-                            Status = "Approved",
-                            Transmission = "Manuel",
-                            Type = "Sedan"
-                        });
+                    b.ToTable("Cars");
                 });
 
             modelBuilder.Entity("BK.Models.CarSpecification", b =>
@@ -291,17 +235,14 @@ namespace BK.DataAccess.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("OwnerId");
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Email")
@@ -355,9 +296,7 @@ namespace BK.DataAccess.Migrations
 
                     b.ToTable("AspNetUsers", (string)null);
 
-                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
-
-                    b.UseTphMappingStrategy();
+                    b.UseTptMappingStrategy();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -459,7 +398,7 @@ namespace BK.DataAccess.Migrations
                     b.Property<string>("StreetAddress")
                         .HasColumnType("longtext");
 
-                    b.HasDiscriminator().HasValue("ApplicationUser");
+                    b.ToTable("Owner", (string)null);
                 });
 
             modelBuilder.Entity("BK.Models.Car", b =>
@@ -476,9 +415,17 @@ namespace BK.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("BK.Models.ApplicationUser", "Owner")
+                        .WithMany("Cars")
+                        .HasForeignKey("OwnerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Brand");
 
                     b.Navigation("CarSpecification");
+
+                    b.Navigation("Owner");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -530,6 +477,20 @@ namespace BK.DataAccess.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("BK.Models.ApplicationUser", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                        .WithOne()
+                        .HasForeignKey("BK.Models.ApplicationUser", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("BK.Models.ApplicationUser", b =>
+                {
+                    b.Navigation("Cars");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,13 +1,16 @@
 ﻿@model CarVM
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 
 <h1 class="text-5xl py-8 text-center font-bold tracking-wider bg-gradient-to-r from-sky-500 to-indigo-500 mb-6">@(Model.Car.Id != 0 ? "UPDATE" : "CREATE") AD</h1>
 <div class="py-4">
-
     <div class="flex flex-col justify-center items-start w-5/12 mx-auto">
         <img src="@Model.Car.ImageUrl" alt="@Model.Car.Brand" />
         <form method="post" class="w-full bg-[#374151] p-8" enctype="multipart/form-data">
             <input asp-for="Car.Id" hidden />
             <input asp-for="Car.ImageUrl" hidden />
+            <input asp-for="Car.OwnerId" value="@UserManager.GetUserId(User)" hidden />
             <div class="relative z-0 w-full mb-6 group">
                 <label asp-for="Car.BrandId" class="block mb-2 font-medium text-sm text-gray-300"></label>
                 <select asp-for="@Model.Car.BrandId" asp-items="@Model.BrandList" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -15,6 +18,7 @@
                 </select>
                 <span asp-validation-for="Car.CarSpecificationId" class="text-danger"></span>
             </div>
+
             <div class="relative z-0 w-full mb-6 group">
                 <input asp-for="Car.Model" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
                 <label asp-for="Car.Model" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"></label>

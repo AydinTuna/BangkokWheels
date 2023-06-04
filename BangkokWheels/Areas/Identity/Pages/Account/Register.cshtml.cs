@@ -159,6 +159,7 @@ namespace BangkokWheels.Areas.Identity.Pages.Account
                 user.PostalCode = Input.PostalCode;
                 user.PhoneNumber = Input.PhoneNumber;
 
+
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
@@ -173,6 +174,7 @@ namespace BangkokWheels.Areas.Identity.Pages.Account
                         await _userManager.AddToRoleAsync(user, SD.Role_Customer);
                     }
                     var userId = await _userManager.GetUserIdAsync(user);
+
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                     var callbackUrl = Url.Page(

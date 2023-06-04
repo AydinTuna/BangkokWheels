@@ -52,7 +52,9 @@ namespace BK.Models
         [DisplayName("Ad Description")]
         public string AdDescription { get; set; }
 
-        public string? OwnerId { get; set; }
+        public string OwnerId { get; set; }
+        [ValidateNever]
+        public ApplicationUser Owner { get; set; }
     }
 }
 

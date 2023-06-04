@@ -19,7 +19,7 @@ namespace BK.DataAccess.Repository
             var objFromDb = _db.Cars.FirstOrDefault(u => u.Id == obj.Id);
             if (objFromDb != null)
             {
-                objFromDb.Brand = obj.Brand;
+                objFromDb.BrandId = obj.BrandId;
                 objFromDb.Model = obj.Model;
                 objFromDb.ProductionYear = obj.ProductionYear;
                 objFromDb.Type = obj.Type;
@@ -37,6 +37,7 @@ namespace BK.DataAccess.Repository
                 objFromDb.CreatedAt = DateTime.Now;
                 objFromDb.AdTitle = obj.AdTitle;
                 objFromDb.AdDescription = obj.AdDescription;
+                objFromDb.OwnerId = obj.OwnerId;
             }
         }
     }

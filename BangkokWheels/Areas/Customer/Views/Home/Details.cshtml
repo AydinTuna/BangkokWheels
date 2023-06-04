@@ -1,4 +1,7 @@
 ﻿@model Car
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 
 <h1 class="text-5xl py-8 text-center font-bold tracking-wider bg-gradient-to-r from-sky-500 to-indigo-500 mb-6">CAR DETAILS</h1>
 <section class="max-w-[800px] mx-auto flex flex-col justify-center items-center py-8">
@@ -10,13 +13,21 @@
             @Model.SalePrice.ToString("c")
         </span>
     </div>
-    <div class="w-full h-full flex items-center justify-center mt-8">
+    @if (@UserManager.GetUserId(User) == Model.OwnerId)
+    {
+        <div class="flex items-center justify-center w-full mt-8">
+            <a asp-area="Customer" asp-controller="Car" asp-action="Upsert" asp-route-id="@Model.Id" class="w-full block hover:cursor-pointer text-white shadow-lg shadow-gray-600 bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-4">Edit</a>
+            <a id="delete" onclick="Delete('/customer/car/delete/@Model.Id')" class="w-full block hover:cursor-pointer text-white bg-gradient-to-br shadow-lg shadow-gray-600 from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center ms-4">Delete</a>
+        </div>
+    }
+    <div class="w-full h-full flex items-center justify-center mt-6">
         <div class="w-full min-h-[300px] me-4 p-4 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 shadow-lg shadow-gray-600">
             <h2 class="text-2xl font-bold text-gray-900 mb-4">@Model.AdTitle</h2>
             <p class="text-md font-xs text-gray-900">@Model.AdDescription</p>
         </div>
         <div class="w-full min-h-[300px] ms-4 p-4 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 shadow-lg shadow-gray-600">
-            <p class="text-4xl font-bold text-gray-900">Personal Informations</p>
+            <h2 class="text-2xl font-bold text-gray-900">Owner Info</h2>
+            <p class="text-md font-xs text-gray-900">@UserManager.GetUserName(User)</p>
         </div>
     </div>
     <div class="w-full min-h-[300px] mt-8 p-4 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 shadow-lg shadow-gray-600">
@@ -24,7 +35,7 @@
         <ul class="max-w-md space-y-1 text-gray-900 list-inside">
             <li class="flex items-center">
                 <svg class="w-4 h-4 mr-1.5 text-green-700 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                @Model.Brand
+                @Model.Brand.BrandName
             </li>
             <li class="flex items-center">
                 <svg class="w-4 h-4 mr-1.5 text-green-700 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
@@ -66,3 +77,7 @@
         </ul>
     </div>
 </section>
+
+@section Scripts{
+    <script src="~/js/car.js"></script>
+}

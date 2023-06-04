@@ -8,7 +8,7 @@ namespace BK.Models
         [Key]
         public int Id { get; set; }
         [Required]
-        public string BrandName { get; set; }
+        public string? BrandName { get; set; }
     }
 }
 

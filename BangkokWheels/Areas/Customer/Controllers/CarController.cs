@@ -8,6 +8,7 @@ using BK.Models.ViewModels;
 using BK.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -115,6 +116,11 @@ namespace BangkokWheels.Areas.Customer.Controllers
                 carVM.CarSpecificationList = _unitOfWork.CarSpecification.GetAll().Select(u => new SelectListItem
                 {
                     Text = u.SpecificationName,
+                    Value = u.Id.ToString()
+                });
+                carVM.BrandList = _unitOfWork.Brand.GetAll().Select(u => new SelectListItem
+                {
+                    Text = u.BrandName,
                     Value = u.Id.ToString()
                 });
                 return View(carVM);

@@ -1,30 +1,8 @@
-﻿var dataTable;
-
-$(document).ready(function () {
-    loadDataTable();
-});
-
-function loadDataTable() {
-    dataTable = $('#tblData').DataTable({
-        "ajax": { url: '/customer/car/getall' },
-        "columns": [
-            { data: 'brand.brandName', "width": "25%" },
-            { data: 'carSpecification.specificationName', "width": "15%" },
-            { data: 'productionYear', "width": "10%" },
-            { data: 'salePrice', "width": "15%" },
-            {
-                data: 'id',
-                "render": function (data) {
-                    return `<div class="w-75 btn-group" role="group">
-                     <a href="/customer/car/upsert?id=${data}" class="text-white p-0.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Edit</a>               
-                     <a onClick=Delete('/customer/car/delete/${data}') class="text-white p-0.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Delete</a>
-                    </div>`
-                },
-                "width": "25%"
-            }
-        ]
+﻿$(document).ready(function () {
+    $('.delete').click(function (url) {
+        Delete(url);
     });
-}
+});
 
 function Delete(url) {
     Swal.fire({
@@ -41,10 +19,11 @@ function Delete(url) {
                 url: url,
                 type: 'DELETE',
                 success: function (data) {
-                    dataTable.ajax.reload();
                     toastr.success(data.message);
                 }
             })
+            window.location.reload();
+            window.location.href = "/customer/home/index";
         }
     })
 }
